@@ -1,0 +1,16 @@
+﻿@model MIDTERM_E1_BSIT31E1_Villafuerte.Models.BookCopy
+
+<div class="container mt-4">
+    <h2>Pull-out Copy</h2>
+    <p>Provide reason for pulling this copy out:</p>
+
+    <form asp-action="Pullout" method="post">
+        <input type="hidden" name="copyId" value="@Model.Id" />
+        <div class="mb-3">
+            <label class="form-label">Reason</label>
+            <input type="text" name="reason" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-danger">Pull out</button>
+        <a asp-action="Details" asp-route-id="@ViewBag.BookId" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

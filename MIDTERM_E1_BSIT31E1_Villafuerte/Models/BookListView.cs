@@ -8,5 +8,6 @@
         public string Genre { get; set; } = string.Empty;
         public int Copies { get; set; }
         public string ImageUrl { get; set; } = string.Empty;
+        public bool IsArchived { get; set; }
     }
 }

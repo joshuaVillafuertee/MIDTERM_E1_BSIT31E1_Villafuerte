@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MIDTERM_E1_BSIT31E1_Villafuerte.Models.BookListView>
+
+<div class="container mt-4">
+    <h2>Archived Books</h2>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Message"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <p>No archived books found.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Copies</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td>@book.Title</td>
+                        <td>@book.Author</td>
+                        <td>@book.Genre</td>
+                        <td>@book.Copies</td>
+                        <td>
+                            <a asp-action="Restore" asp-route-id="@book.Id" class="btn btn-success btn-sm">Restore</a>
+                            <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-warning btn-sm">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <a asp-action="Index" class="btn btn-secondary">Back to Books</a>
+</div>
