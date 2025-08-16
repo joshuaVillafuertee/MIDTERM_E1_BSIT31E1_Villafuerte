@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MIDTERM_E1_BSIT31E1_Villafuerte.Models.BookListView>
+
+    <div class="container mt-4">
+
+        @* Success / Info Messages *@
+        @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Message"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+        <h2>Book Library</h2>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <!-- Add Book Card -->
+            <div class="col">
+                <a asp-action="Add" class="text-decoration-none">
+                    <div class="card h-100 d-flex align-items-center justify-content-center" style="min-height: 250px;">
+                        <div class="text-center">
+                            <div class="display-4">+</div>
+                            <p>Add Book</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            @foreach (var book in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="@book.ImageUrl" class="card-img-top" style="height:200px; object-fit:cover;" alt="@book.Title" />
+                    <div class="card-body">
+                        <h5>@book.Title</h5>
+                        <p><strong>Author:</strong> @book.Author</p>
+                        <p>@book.Genre | Copies: @book.Copies</p>
+
+                        <a asp-action="Details" asp-route-id="@book.Id" class="btn btn-sm btn-primary">Details</a>
+                        <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+        </div>
+    </div>
